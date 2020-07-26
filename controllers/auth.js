@@ -1,10 +1,9 @@
-const User = require("../models/User")
-const Poll = require("../models/Program")
+const User = require("../models/User");
 
 module.exports = {
   CLIENT_HOME_PAGE_URL: "http://localhost:3000",
   getAuth: async (req, res, next) => {
-    console.log("auth")
+    console.log("auth");
   },
   getLoginSuccess: async (req, res, next) => {
     if (req.user) {
@@ -12,23 +11,23 @@ module.exports = {
         success: true,
         message: "user has successfully authenticated",
         user: req.user,
-      })
+      });
     } else {
       res.json({
         success: false,
         message: "no authenticated user",
         user: null,
-      })
+      });
     }
   },
   getLoginFailed: async (req, res, next) => {
     res.status(401).json({
       success: false,
       message: "user failed to authenticate.",
-    })
+    });
   },
   getLogout: async (req, res, next) => {
-    req.logout()
-    res.redirect(module.exports.CLIENT_HOME_PAGE_URL)
+    req.logout();
+    res.redirect(module.exports.CLIENT_HOME_PAGE_URL);
   },
-}
+};
